@@ -42,19 +42,22 @@ player.mute()
 while True:
     i=GPIO.input(7)
     if i==0:                 #When output from motion sensor is LOW
-        print ("No intruders",i)
+        #print ("No intruders",i)
         GPIO.output(3, 0)  #Turn OFF LED
         time.sleep(0.1)
         if trigger:
             trigger = False
-            player.mute()
-    elif i==1:               #When output from motion sensor is HIGH
-        print ("Intruder detected",i)
+    #print(player.position())
+    if player.position() < 2:
+        player.mute()
+        muted = True
+    elif i==1:               #When output from motion sensor is HIGH        
         GPIO.output(3, 1)  #Turn ON LED
-        if not trigger:
+        #print ("Intruder detected",i)
+        if not trigger:            
             trigger = True
             print ("now Triggered")
             #os.system("killall omxplayer.bin")
-            player.unmute()                    
-            time.sleep(sound_length_on_trigger)
+            muted = False
+            player.unmute()
 

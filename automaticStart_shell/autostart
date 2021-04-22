@@ -1,5 +1,8 @@
 @lxpanel --profile LXDE-pi
 @pcmanfm --desktop --profile LXDE-pi
 @xscreensaver -no-splash
+@lxterminal --command="./Desktop/automaticStart_shell/hello-world.sh"
+@xscreensaver -no-splash
+point-rpi
 
-@bash /home/pi/Desktop/autostartScripts.sh
+//@bash /home/pi/hello-world.sh &
